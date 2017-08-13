@@ -1,0 +1,20 @@
+notes
+
+*main page*
+header
+shelf
+	title
+	book list
+		book
+
+
+*search page*
+search
+results
+	book list
+		book
+back
+
+
+to do
+- jsx indenter
