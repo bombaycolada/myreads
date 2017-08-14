@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import './vendor/simplegrid/simple-grid.css';
+import './Book.css';
+
+
 import Shelf from './Shelf.js';
 
 

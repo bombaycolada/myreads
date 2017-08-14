@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './vendor/simplegrid/simple-grid.css';
 
 class Shelf extends Component {
 
@@ -7,10 +6,17 @@ class Shelf extends Component {
 		return (
 			<div className = "container"> 
 				<h3> {this.props.title} </h3> 
-				
+				<hr/>
 				<div className="row">
 					{this.props.booklist.map( (book) => (   
-						<div className="col-3"> {book.title} </div>
+						<div className="col-3 book"> 
+							<img className="img" src={book.imageLinks.smallThumbnail} />
+							<div className="content">
+								<span className="title">{book.title} </span>
+								<span className="author">{book.authors.toString()}</span>
+							</div>
+						</div>
+
 						))
 					}
 				</div>

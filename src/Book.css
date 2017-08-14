@@ -1,0 +1,23 @@
+.book {
+  height: 200px;
+}
+
+.book .img {
+	height:70%;
+}
+
+
+.book .content {
+	color:blue;
+	font-size: 12px;
+	height:30%;
+}
+
+.book .title {
+	display: block;
+}
+
+.book .author {
+	display: block;
+	color: grey;
+}
