@@ -2,18 +2,31 @@ notes
 
 *main page*
 header
-shelf
+search page button link
+<shelf/>
 	title
 	book list
-		book
+		bookshelf changer menu
+		<book/>
+			title
+			author
+			img
 
+		
 
 *search page*
-search
+search bar
+back button
 results
+	<shelf/>
+	title
 	book list
-		book
-back
+		bookshelf changer menu
+		<book/>
+			title
+			author
+			img
+
 
 
 to do
