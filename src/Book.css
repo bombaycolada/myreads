@@ -8,9 +8,8 @@
 
 
 .book .content {
-	color:blue;
-	font-size: 12px;
-	height:30%;
+ 	font-size: 12px;
+	height: 30%;
 }
 
 .book .title {
@@ -20,4 +19,17 @@
 .book .author {
 	display: block;
 	color: grey;
+}
+
+.book .book-shelf-changer {
+
+  background: #60ac5d;
+  background-image: url('./icons/arrow-drop-down.svg');	
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  padding-bottom: -10%;
+
+  
 }
