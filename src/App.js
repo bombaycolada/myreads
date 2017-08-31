@@ -3,9 +3,15 @@ import './App.css';
 import './vendor/simplegrid/simple-grid.css';
 import './Book.css';
 
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+
 
 import Shelf from './Shelf.js';
-
+import SearchPage from './SearchPage.js';
 
 const booklist = {
     "books": [
@@ -337,17 +343,21 @@ const booklist = {
 class App extends Component {
   render() {
     return (
+        <Router>
+          <div>
+            <p><Link to="/search">Search</Link></p>
+            <Route path="/search" component={SearchPage}/>
 
-      <div>
-        <div className="App">
-          <div className="App-header">
-            <h2>My Reads</h2>
+            <div className="App">
+              <div className="App-header">
+                <h2>My Reads</h2>
+              </div>
+            <Shelf title="Currently Reading" booklist={booklist.books} />
+            <Shelf title="Want to Read" booklist={booklist.books} />
+            <Shelf title="Read" booklist={booklist.books} />
+            </div>    
           </div>
-        <Shelf title="Currently Reading" booklist={booklist.books} />
-        <Shelf title="Want to Read" booklist={booklist.books} />
-        <Shelf title="Read" booklist={booklist.books} />
-        </div>    
-      </div>
+        </Router>
     );
   }
 }
