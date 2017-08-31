@@ -10,7 +10,7 @@ class Shelf extends Component {
 				<hr/>
 				<div className="row">
 					{this.props.booklist.map( (book) => (   
-						<div className="col-3 book"> 
+						<div key={book.id} className="col-3 book"> 
 							<span className="book-shelf-changer" onClick={switchShelf} > 
 	                              <select>
 	                                <option value="none" disabled>Move to...</option>
