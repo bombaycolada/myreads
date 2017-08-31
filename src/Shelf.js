@@ -11,8 +11,7 @@ class Shelf extends Component {
 				<div className="row">
 					{this.props.booklist.map( (book) => (   
 						<div className="col-3 book"> 
-							<span className="book-shelf-changer"> 
-								<div className="">
+							<span className="book-shelf-changer" onClick={switchShelf} > 
 	                              <select>
 	                                <option value="none" disabled>Move to...</option>
 	                                <option value="currentlyReading">Currently Reading</option>
@@ -20,7 +19,6 @@ class Shelf extends Component {
 	                                <option value="read">Read</option>
 	                                <option value="none">None</option>
 	                              </select>
-	                             </div>
 							</span>
 							<Book imageLinks={book.imageLinks} title={book.title} authors={book.authors}/>
 							
@@ -34,6 +32,11 @@ class Shelf extends Component {
 			);
 	}
 	
+}
+
+function switchShelf(event){
+	console.log("change my shelf");
+	console.log(event);
 }
 
 export default Shelf;
