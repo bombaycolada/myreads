@@ -3,6 +3,11 @@ import Book from './Book.js';
 
 class Shelf extends Component {
 
+	handleCl(e, obj){
+		console.log(e)
+		console.log(obj)
+	}
+
 	render(){
 		return (
 			<div className = "container"> 
@@ -11,7 +16,7 @@ class Shelf extends Component {
 				<div className="row">
 					{this.props.booklist.map( (book) => (   
 						<div key={book.id} className="col-3 book"> 
-							<span className="book-shelf-changer" onClick={switchShelf} > 
+							<span className="book-shelf-changer" onClick={ (e) => this.handleCl(e, book) } > 
 	                              <select>
 	                                <option value="none" disabled>Move to...</option>
 	                                <option value="currentlyReading">Currently Reading</option>
@@ -34,9 +39,10 @@ class Shelf extends Component {
 	
 }
 
-function switchShelf(event){
+function switchShelf(event, x){
 	console.log("change my shelf");
 	console.log(event);
+	console.log(x);
 }
 
 export default Shelf;

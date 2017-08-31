@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import './Book.css';
 import Shelf from './Shelf.js';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import * as BooksAPI from './BooksAPI'
 
 
+
+BooksAPI.getAll().then( (val)=> {console.log(val); console.log("") } )
 
 const booklist = {
     "books": [
@@ -332,6 +335,30 @@ const booklist = {
 
 class MainPage extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            readBooks: [],
+            wantToReadBooks: [],
+            currentlyReadingBooks: []
+        };
+    }
+
+    componentDidMount() {
+        BooksAPI.getAll().then( (booklist)=> {
+            this.setState({ 
+                readBooks : booklist.filter(book => book.shelf === "read") ,
+                wantToReadBooks: booklist.filter(book => book.shelf === "wantToRead") ,
+                currentlyReadingBooks: booklist.filter(book => book.shelf === "currentlyReading") 
+            })
+
+           
+        } )
+
+
+    }
+ 
+
 	render() {
 		return ( 
 				<div className="App">
@@ -339,9 +366,10 @@ class MainPage extends Component {
               		<div className="App-header">
                 		<h2>My Reads</h2>
               		</div>
-            		<Shelf title="Currently Reading" booklist={booklist.books} />
-            		<Shelf title="Want to Read" booklist={booklist.books} />
-            		<Shelf title="Read" booklist={booklist.books} />
+
+            		<Shelf title="Currently Reading" booklist={this.state.currentlyReadingBooks} />
+            		<Shelf title="Want to Read" booklist={this.state.wantToReadBooks} />
+            		<Shelf title="Read" booklist={this.state.readBooks} />
             	</div>
                )
 	}
