@@ -342,6 +342,18 @@ class MainPage extends Component {
             wantToReadBooks: [],
             currentlyReadingBooks: []
         };
+        this.handler = this.handler.bind(this);
+    }
+
+
+    handler(){
+         BooksAPI.getAll().then( (booklist)=> {
+            this.setState({ 
+                readBooks : booklist.filter(book => book.shelf === "read") ,
+                wantToReadBooks: booklist.filter(book => book.shelf === "wantToRead") ,
+                currentlyReadingBooks: booklist.filter(book => book.shelf === "currentlyReading") 
+            })  
+        })
     }
 
     componentDidMount() {
@@ -350,10 +362,8 @@ class MainPage extends Component {
                 readBooks : booklist.filter(book => book.shelf === "read") ,
                 wantToReadBooks: booklist.filter(book => book.shelf === "wantToRead") ,
                 currentlyReadingBooks: booklist.filter(book => book.shelf === "currentlyReading") 
-            })
-
-           
-        } )
+            })  
+        })
 
 
     }
@@ -367,9 +377,9 @@ class MainPage extends Component {
                 		<h2>My Reads</h2>
               		</div>
 
-            		<Shelf title="Currently Reading" booklist={this.state.currentlyReadingBooks} />
-            		<Shelf title="Want to Read" booklist={this.state.wantToReadBooks} />
-            		<Shelf title="Read" booklist={this.state.readBooks} />
+            		<Shelf refresh={this.handler} title="Currently Reading" booklist={this.state.currentlyReadingBooks} />
+            		<Shelf refresh={this.handler} title="Want to Read" booklist={this.state.wantToReadBooks} />
+            		<Shelf refresh={this.handler} title="Read" booklist={this.state.readBooks} />
             	</div>
                )
 	}

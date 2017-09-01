@@ -30,6 +30,8 @@
   border-radius: 50%;
   position: absolute;
   padding-bottom: -10%;
+}
 
-  
+.book-shelf-changer select{
+display: none;  
 }

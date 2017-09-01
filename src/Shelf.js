@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
 import Book from './Book.js';
+import * as BooksAPI from './BooksAPI'
 
 class Shelf extends Component {
 
-	handleCl(e, obj){
-		console.log(e)
-		console.log(obj)
+
+	handleClick(e, obj){
+		var el = e.target.querySelector("select");
+		if (el) el.style.display="inline";
+	}
+
+	handleChange(e, book){
+		var el = e.target;
+		var newShelf = el.value;
+		BooksAPI.update(book, newShelf);
+		this.props.refresh();
 	}
 
 	render(){
@@ -16,8 +25,8 @@ class Shelf extends Component {
 				<div className="row">
 					{this.props.booklist.map( (book) => (   
 						<div key={book.id} className="col-3 book"> 
-							<span className="book-shelf-changer" onClick={ (e) => this.handleCl(e, book) } > 
-	                              <select>
+							<span className="book-shelf-changer" onClick={ (e) => this.handleClick(e, book) } > 
+	                              <select value={book.shelf} onChange={(e) => this.handleChange(e, book)}>
 	                                <option value="none" disabled>Move to...</option>
 	                                <option value="currentlyReading">Currently Reading</option>
 	                                <option value="wantToRead">Want to Read</option>
@@ -39,10 +48,6 @@ class Shelf extends Component {
 	
 }
 
-function switchShelf(event, x){
-	console.log("change my shelf");
-	console.log(event);
-	console.log(x);
-}
+
 
 export default Shelf;
