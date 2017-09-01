@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Shelf from './Shelf.js';
+import * as BooksAPI from './BooksAPI'
 
 const booklist = {
     "books": [
@@ -328,13 +329,37 @@ const booklist = {
 
 class SearchPage extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            booklist: []
+        }; 
+        this.handler = this.handler.bind(this); 
+        this.handleInput = this.handleInput.bind(this);      
+    }
+
+    handleInput(source){
+        var input = document.getElementById("searchQuery").value;
+        BooksAPI.search(input, 10).then( (booklist)=> {
+            this.setState({ 
+                booklist : booklist
+            })  
+        })
+    }
+
+    
+    handler(){
+    }
+
+ 
+
 	render(){
 		return (
 			<div className="App">
 				
 				<p><Link to="/">Back to Main Page</Link></p>
-				<h3><input type="text" placeholder="Search Book" /> <button>Search</button> </h3>
-				<Shelf title="" booklist={booklist.books} />
+				<h3><input id="searchQuery" type="text" placeholder="Search Book" /> <button onClick={this.handleInput}>Search</button> </h3>
+			     <Shelf refresh={this.handler} title="" booklist={this.state.booklist} />
 			</div>
 
 		)
