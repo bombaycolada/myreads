@@ -19,7 +19,6 @@ class SearchPage extends Component {
         var input = document.getElementById("searchQuery").value;
         BooksAPI.search(input, 20).then( (booklist)=> {
             if (booklist.length >0){
-                console.log("bookshelf", this.state.bookshelf);
                 for (var i=0; i<booklist.length; i++){
                     if (this.state.bookshelf[booklist[i].id]){
                         booklist[i].shelf = this.state.bookshelf[booklist[i].id];
@@ -37,11 +36,9 @@ class SearchPage extends Component {
 
     
     handler(){
-        console.log("herrreeeee")
         this.componentDidMount();
         var input = document.getElementById("searchQuery").value;
         BooksAPI.search(input, 10).then( (booklist)=> {
-            console.log("bookshelf", this.state.bookshelf);
             for (var i=0; i<booklist.length; i++){
                 if (this.state.bookshelf[booklist[i].id]){
                     booklist[i].shelf = this.state.bookshelf[booklist[i].id];
