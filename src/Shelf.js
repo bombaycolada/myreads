@@ -3,6 +3,7 @@ import Book from './Book.js';
 import * as BooksAPI from './BooksAPI';
 
 class Shelf extends Component {
+	
 
 
 	handleClick(e, obj){
@@ -15,6 +16,8 @@ class Shelf extends Component {
 		var newShelf = el.value;
 		BooksAPI.update(book, newShelf);
 		this.props.refresh();
+		
+		
 	}
 
 	render(){
@@ -27,7 +30,7 @@ class Shelf extends Component {
 						<div key={book.id} className="col-3 book"> 
 							<span className="book-shelf-changer" onClick={ (e) => this.handleClick(e, book) } > 
 	                              <select value={book.shelf} onChange={(e) => this.handleChange(e, book)}>
-	                                <option value="none" disabled>Move to...</option>
+	                                <option value="moveto" disabled>Move to...</option>
 	                                <option value="currentlyReading">Currently Reading</option>
 	                                <option value="wantToRead">Want to Read</option>
 	                                <option value="read">Read</option>

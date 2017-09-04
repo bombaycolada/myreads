@@ -13,9 +13,6 @@ import SearchPage from './SearchPage.js';
 import MainPage from './MainPage.js';
 
 
-
-
-
 class App extends Component {
   render() {
     return (
